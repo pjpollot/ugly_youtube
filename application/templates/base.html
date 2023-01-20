@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ugly Youtube</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <form method="post">
+            <div>
+                <input type="text" placeholder="type here..." name="query" value="{{ query }}">
+                <button type="submit">search</button>
+            </div>
+        </form>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

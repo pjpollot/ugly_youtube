@@ -16,7 +16,7 @@ For now, only basic features are implemented:
 - From a search query, retrieve videos' data (links and titles).
 - Print the results in HTML or Markdown.
 
-Details about the use-case can be found in `main.py`. Besides, docstrings are also present to explain each component's functionality.
+Docstrings are also present to explain each component's functionality.
 
 ## Caution
 

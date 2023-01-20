@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %} 
+    <div style="text-align: center;">
+        {% for video in videos %}    
+            <h2>{{ video.title }}</h2>
+            <iframe src="{{ video.get_embed_url() }}" width=600 height=400></iframe>
+        {% endfor %}
+    </div>
+{% endblock %}
