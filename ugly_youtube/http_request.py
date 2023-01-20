@@ -8,12 +8,12 @@ class UglyYoutube:
     The main class of the module. 
     
     Fetch research results of videos from Youtube API, but requires an API key to make it work.
-    You can create your own key from https://console.cloud.google.com/ website.
+    You can create your own key from https://console.cloud.google.com/.
 
     Attributes
     ----------
     api_key: str
-        The API key to use Youtube API v3.
+        The key to use Youtube API v3.
 
     METHODS
     -------
@@ -48,7 +48,7 @@ class UglyYoutube:
             )
 
 
-    def search(self, search_topic: str, max_results: int) -> List[dict]:
+    def search(self, search_topic: str, max_results: int = 10) -> List[dict]:
         """GET https://www.googleapis.com/youtube/v3/search
         
         Parameters
@@ -73,6 +73,7 @@ class UglyYoutube:
             "maxResults": max_results,
         }
         results = requests.get(url=request_url, params=arguments)
+        self.check_response_validity(results)
         videos = []
         for search_result in results.json()["items"]:
             videos.append(
