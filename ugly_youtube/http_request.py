@@ -1,7 +1,10 @@
+"""Handle HTTP requests with Youtube API v3.
+"""
 import requests
 from requests.models import Response
-
 from typing import List
+
+from .objects import Video
 
 class UglyYoutube:
     """
@@ -10,25 +13,25 @@ class UglyYoutube:
     Fetch research results of videos from Youtube API, but requires an API key to make it work.
     You can create your own key from https://console.cloud.google.com/.
 
-    Attributes
+    ATTRIBUTES
     ----------
     api_key: str
         The key to use Youtube API v3.
 
     METHODS
     -------
-    search
+    search:
         Return videos based on a certain topic (= query).
     """
 
     def __init__(self, api_key: str) -> None:
-        self.key = api_key
+        self.__key = api_key
 
     @staticmethod
     def check_response_validity(response: Response) -> None:
         """Check whether or not the API call has been successful.
 
-        Parameters
+        PARAMETERS
         ----------
         response: Response
             the response to the API call.
@@ -47,11 +50,12 @@ class UglyYoutube:
                 '''
             )
 
+    __search_url = "https://www.googleapis.com/youtube/v3/search"
 
-    def search(self, search_topic: str, max_results: int = 10) -> List[dict]:
+    def search(self, search_topic: str, max_results: int = 10) -> List[Video]:
         """GET https://www.googleapis.com/youtube/v3/search
         
-        Parameters
+        PARAMETERS
         ----------
         search_topic: str
             The search topic. Example: "Pokemon Ruby Nuzlocke challenge"
@@ -59,27 +63,26 @@ class UglyYoutube:
             The number of results to show. Must be between 1 and 50. 
             If higher than 50 the API will only return 50 results.
 
-        Returns
+        RETURNS
         -------
-        List[dict]
+        List[Video]
             List of search results.
         """
-        request_url = "https://www.googleapis.com/youtube/v3/search"
         arguments = {
             "part": "id, snippet",
             "type": "video",
-            "key": self.key,
+            "key": self.__key,
             "q": search_topic,
             "maxResults": max_results,
         }
-        results = requests.get(url=request_url, params=arguments)
+        results = requests.get(url=self.__search_url, params=arguments)
         self.check_response_validity(results)
         videos = []
         for search_result in results.json()["items"]:
             videos.append(
-                {
-                    "id": search_result["id"]["videoId"],
-                    "title": search_result["snippet"]["description"],
-                }
+                Video(
+                    id = search_result["id"]["videoId"],
+                    title = search_result["snippet"]["description"],
+                )
             )
         return videos
