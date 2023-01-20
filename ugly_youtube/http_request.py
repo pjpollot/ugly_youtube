@@ -14,6 +14,11 @@ class UglyYoutube:
     ----------
     api_key: str
         The API key to use Youtube API v3.
+
+    METHODS
+    -------
+    search
+        Return videos based on a certain topic (= query).
     """
 
     def __init__(self, api_key: str) -> None:
