@@ -12,7 +12,7 @@ $ poetry install
 
 ## Features
 
-The package is still in WIP but the basic features are already implemented:
+For now, only basic features are implemented:
 - From a search query, retrieve videos' data (links and titles).
 - Print the results in HTML or Markdown.
 
@@ -21,3 +21,8 @@ Details about the use-case can be found in `main.py`. Besides, docstrings are al
 ## Caution
 
 Make sure to have an API key for Youtube API so you can run this project. If not, you can generate one from [here](https://console.cloud.google.com/).
+
+## Next steps
+
+- Implementation for command line.
+- A more comprehensive GUI implemetation (esp: adding a search bar and update results).
