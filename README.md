@@ -14,9 +14,16 @@ $ poetry install
 
 For now, only basic features are implemented:
 - From a search query, retrieve videos' data (links and titles).
-- Print the results in HTML or Markdown.
+- Print the results in the browser.
 
 Docstrings are also present to explain each component's functionality.
+
+## Run the application
+
+The main file can be found in `bin` folder, and to run it, type:
+```
+./ugly-youtube --api-key API_KEY
+```
 
 ## Caution
 
@@ -24,5 +31,5 @@ Make sure to have an API key for Youtube API so you can run this project. If not
 
 ## Next steps
 
-- Implementation for command line.
-- A more comprehensive GUI implemetation (esp: adding a search bar and update results).
+- Add credential file for the API key.
+- What about a lil' make-up to our application?

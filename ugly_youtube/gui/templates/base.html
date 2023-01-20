@@ -10,6 +10,8 @@
             <div>
                 <input type="text" placeholder="type here..." name="query" value="{{ query }}">
                 <button type="submit">search</button>
+                <label for="max_results">max number of results</label>
+                <input type="number" name="max_results" min="1" max="50" value="{{ max_results }}">
             </div>
         </form>
 
