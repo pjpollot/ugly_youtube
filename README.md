@@ -22,7 +22,7 @@ Docstrings are also present to explain each component's functionality.
 
 The main file can be found in `bin` folder, and to run it, type:
 ```
-./ugly-youtube --api-key API_KEY
+$ ./ugly-youtube --api-key API_KEY
 ```
 
 ## Caution
