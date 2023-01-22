@@ -2,6 +2,10 @@
 
 import threading
 import subprocess
+import os
+import sys
+import json
+
 from argparse import ArgumentParser
 
 from ugly_youtube import UglyYoutube
@@ -10,14 +14,39 @@ from ugly_youtube.gui import UglyGUIInterface
 PORT = 8000
 DEBUG_MODE = False
 
+CREDENTIALS_FILE = os.environ["HOME"] + "/.ugly_youtube/credentials.json"
+
 if __name__ == "__main__":
     parser = ArgumentParser(
         prog="Ugly Youtube",
         usage="Fetch Youtube videos."
     )
-    parser.add_argument("--api-key", required=True, type=str, help="The API Key for Youtube.")
+    parser.add_argument("--api-key", type=str, help="The API Key for Youtube.")
+    parser.add_argument("--save-key", action="store_true", help=f"Save the specified key in a {os.path.basename(CREDENTIALS_FILE)}.")
+    args = parser.parse_args()
 
-    api_key = parser.parse_args().api_key
+    # load key
+    api_key = args.api_key
+    if api_key is None:
+        if os.path.exists(CREDENTIALS_FILE):
+            print(f"\033[94mLoad the key from the credentials in {CREDENTIALS_FILE}\033")
+            with open(CREDENTIALS_FILE, mode="r") as f:
+                creds = json.load(f)
+                api_key = creds["key"]
+        else: 
+            sys.stderr.write("No api key specified in argument and no key saved in credentials.\n")
+            exit(1)
+    elif args.save_key:
+        # save the key in credentials
+        creds_dirname = os.path.dirname(CREDENTIALS_FILE)
+        if not os.path.exists(creds_dirname):
+            os.mkdir(creds_dirname)
+            print(f"\033[94mCreated the folder {creds_dirname}\033[0m")
+        with open(CREDENTIALS_FILE, mode="w") as f:
+            creds = {"key": api_key}
+            json.dump(obj=creds, fp=f)
+            print(f"\033[94mSaved the key in credentials in {CREDENTIALS_FILE}\033[0m")
+
     yt = UglyYoutube(api_key)
     yt_gui = UglyGUIInterface(yt)
 
