@@ -43,3 +43,4 @@ Make sure to have an API key for Youtube API so you can run this project. If not
 ## Next steps
 
 - What about a lil' make-up to our application?
+- Allow the possibility to download the video
