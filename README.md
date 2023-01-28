@@ -36,6 +36,15 @@ $ ./ugly-youtube [--api-key] API_KEY [--save-key]
 ```
 **For the first run, an API key must be specified**. Also, **the key can be saved in a credential file by adding the second argument**. If a credential file exists, the application will by default use the key inside that file unless another key is specified in argument.
 
+## Install the application
+
+To install the application for Python3.9 and add the bin file(s) to the `~/bin` folder, you can run the following command:
+```
+$ ./install.py
+# or 
+$ python3 install.py
+```
+
 ## Caution
 
 Make sure to have an API key for Youtube API so you can run this project. If not, you can generate one from [here](https://console.cloud.google.com/).
@@ -43,4 +52,4 @@ Make sure to have an API key for Youtube API so you can run this project. If not
 ## Next steps
 
 - What about a lil' make-up to our application?
-- Allow the possibility to download the video
+- Allow the possibility to download the video.
