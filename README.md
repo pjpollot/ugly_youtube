@@ -40,9 +40,9 @@ $ ./ugly-youtube [--api-key] API_KEY [--save-key]
 
 To install the application for Python3.9 and add the bin file(s) to the `~/bin` folder, you can run the following command:
 ```
-$ ./install.py
-# or 
 $ python3 install.py
+# or, if you have the permission to execute
+$ ./install.py
 ```
 
 ## Caution
