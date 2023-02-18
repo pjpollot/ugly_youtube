@@ -12,7 +12,6 @@ from ugly_youtube import UglyYoutube
 from ugly_youtube.gui import UglyGUIInterface
 
 PORT = 8000
-DEBUG_MODE = False
 
 CREDENTIALS_FILE = os.environ["HOME"] + "/.ugly_youtube/credentials.json"
 
@@ -23,6 +22,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("--api-key", type=str, help="The API Key for Youtube.")
     parser.add_argument("--save-key", action="store_true", help=f"Save the specified key in a {os.path.basename(CREDENTIALS_FILE)}.")
+    parser.add_argument("--debug-mode", action="store_true", help="Turn on debug mode.")
     args = parser.parse_args()
 
     # load key
@@ -52,4 +52,4 @@ if __name__ == "__main__":
 
     launch_browser = lambda: subprocess.run(f"open http://127.0.0.1:{PORT}", shell=True)
     threading.Timer(2, launch_browser).start()
-    yt_gui.launch_application(debug=DEBUG_MODE, port=PORT)
+    yt_gui.launch_application(debug=args.debug_mode, port=PORT)

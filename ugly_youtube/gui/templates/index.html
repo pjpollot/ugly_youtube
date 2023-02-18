@@ -2,9 +2,13 @@
 
 {% block content %} 
     <div style="text-align: center;">
-        {% for video in videos %}    
-            <h2>{{ video.get_watch_url() }}</h2>
+        {% for video in videos %}   
+        <div class="m-5"> 
             <iframe src="{{ video.get_embed_url() }}" width=600 height=400 allowfullscreen></iframe>
+            <div>
+                <a class="btn btn-outline-danger" href="{{ video.get_watch_url() }}">Watch on YouTube</a>
+            </div>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

@@ -32,7 +32,7 @@ Docstrings are also present to explain each component's functionality.
 
 The main file can be found in `bin` folder, and to run it, type:
 ```
-$ ./ugly-youtube [--api-key] API_KEY [--save-key]
+$ ./ugly-youtube [--api-key] API_KEY [--save-key] [--debug-mode]
 ```
 **For the first run, an API key must be specified**. Also, **the key can be saved in a credential file by adding the second argument**. If a credential file exists, the application will by default use the key inside that file unless another key is specified in argument.
 
@@ -51,5 +51,4 @@ Make sure to have an API key for Youtube API so you can run this project. If not
 
 ## Next steps
 
-- What about a lil' make-up to our application?
 - Allow the possibility to download the video.
